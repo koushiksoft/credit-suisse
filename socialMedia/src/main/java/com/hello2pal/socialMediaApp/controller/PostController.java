@@ -16,7 +16,7 @@ public class PostController {
     @Autowired
     PostService postService;
 
-    @PostMapping("post")
+    @PostMapping(path = "/post", consumes = "application/json", produces = "application/json")
     public ResponseEntity<Post> createPost(@RequestBody Post post){
         return ResponseEntity.ok(postService.createPost(post));
     }
