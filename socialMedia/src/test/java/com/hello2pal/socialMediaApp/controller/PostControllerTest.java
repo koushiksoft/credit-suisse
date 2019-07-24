@@ -3,6 +3,7 @@ package com.hello2pal.socialMediaApp.controller;
 import com.hello2pal.socialMediaApp.dto.Post;
 import com.hello2pal.socialMediaApp.service.PostService;
 
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -38,12 +39,13 @@ public class PostControllerTest {
     void testSucessfullPostCreation() throws Exception {
         Post postRequest = Post.builder().content("content").userId("U1001").build();
         Post postResponse = Post.builder().postId(1l).content("content").userId("U1001").createdDate(new Date()).build();
-        doReturn(postRequest).when(postService).createPost(postResponse);
+        doReturn(postResponse).when(postService).createPost(postRequest);
 
         mockMvc.perform(post("/api/v1.0/post")
                 .contentType(MediaType.APPLICATION_JSON).content(asJsonString(postRequest)))
                 .andExpect(status().isCreated())
-        //.andExpect(jsonPath("$.postId", Matchers.is(1)))
+                .andExpect(jsonPath("$.postId", Matchers.is(1)))
+                .andExpect(jsonPath("$.userId",Matchers.is("U1001")));
         ;
     }
 }
