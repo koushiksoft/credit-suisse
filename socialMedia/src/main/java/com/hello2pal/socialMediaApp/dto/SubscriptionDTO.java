@@ -10,5 +10,4 @@ import lombok.NoArgsConstructor;
 public class SubscriptionDTO {
     private String followerID;
     private String followingID;
-    private boolean following;
 }
