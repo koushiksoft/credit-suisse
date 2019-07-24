@@ -1,4 +1,4 @@
-package com.hello2pal.socialMediaApp.service.Implementation;
+package com.hello2pal.socialMediaApp.service.implementation;
 
 import com.hello2pal.socialMediaApp.dto.Post;
 import com.hello2pal.socialMediaApp.entity.PostEntity;
