@@ -18,7 +18,7 @@ public class ModelMapperUtility {
         return modelMapper.map(post , PostEntity.class);
     }
 
-    public static Post convertPostEntiyToPost(PostEntity postEntity){
+    public static Post convertPostEntityToPost(PostEntity postEntity){
         return modelMapper.map(postEntity , Post.class);
     }
 }
