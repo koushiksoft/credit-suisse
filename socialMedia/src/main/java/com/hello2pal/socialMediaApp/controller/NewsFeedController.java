@@ -5,6 +5,7 @@ import com.hello2pal.socialMediaApp.dto.NewsFeedDTO;
 import com.hello2pal.socialMediaApp.dto.Post;
 import com.hello2pal.socialMediaApp.service.PostService;
 import com.hello2pal.socialMediaApp.service.UserService;
+import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -46,6 +47,7 @@ public class NewsFeedController {
         metas.put("limit", limit.toString());
         metas.put("offset", offset.toString());
         metas.put("totalcount", postCount.toString());
+        metas.put("UUID", MDC.get("refId"));
 
         return ResponseEntity.ok().body(NewsFeedDTO.builder().metaData(metas).posts(allPosts).build());
     }
