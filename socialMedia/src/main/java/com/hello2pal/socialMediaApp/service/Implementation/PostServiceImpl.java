@@ -44,6 +44,6 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Long fetchAllPostsbyUsersCount(List<String> userIds) {
-        return postRepository.countByUserId(userIds);
+        return postRepository.countByUserIdIn(userIds);
     }
 }
