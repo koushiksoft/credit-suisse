@@ -15,8 +15,6 @@ import java.util.Map;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ApiError {
 
-    private Map<String,String> metaData;
+    private Map<String, String> metaData;
     private ErrorDetails error;
-
-
 }

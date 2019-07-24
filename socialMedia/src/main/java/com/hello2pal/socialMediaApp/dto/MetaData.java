@@ -12,5 +12,5 @@ import java.util.Map;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MetaData {
-    private Map<String,String> metas;
+    private Map<String, String> metas;
 }

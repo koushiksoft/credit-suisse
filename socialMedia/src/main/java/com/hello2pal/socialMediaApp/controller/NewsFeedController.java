@@ -5,6 +5,8 @@ import com.hello2pal.socialMediaApp.dto.NewsFeedDTO;
 import com.hello2pal.socialMediaApp.dto.Post;
 import com.hello2pal.socialMediaApp.service.PostService;
 import com.hello2pal.socialMediaApp.service.UserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+@Api(value = "News Feed")
 @RestController
 @RequestMapping("/api/v1.0")
 public class NewsFeedController {
@@ -27,7 +29,7 @@ public class NewsFeedController {
 
     @Autowired
     NewsFeedConfigration newsFeedConfigration;
-
+    @ApiOperation(value = "Get news feed by User Id")
     @GetMapping("/user/{userid}/newsfeed")
     public ResponseEntity<NewsFeedDTO> fetchNewsFeedDTO(
             @PathVariable("userid") String userid,
@@ -36,6 +38,7 @@ public class NewsFeedController {
 
         List<String> allUserIds = userService.fetchAllFollowingUseIds(userid);
         allUserIds.add(userid);
+
         if (limit == null || offset == null) {
             limit = newsFeedConfigration.getDefaultLimit();
             offset = newsFeedConfigration.getDefaultOffset();
@@ -44,8 +47,8 @@ public class NewsFeedController {
         Long postCount = postService.fetchAllPostsbyUsersCount(allUserIds);
 
         Map<String, String> metas = new HashMap<>();
-        metas.put("limit", limit.toString());
-        metas.put("offset", offset.toString());
+        metas.put("limit", limit);
+        metas.put("offset", offset);
         metas.put("totalcount", postCount.toString());
         metas.put("UUID", MDC.get("refId"));
 

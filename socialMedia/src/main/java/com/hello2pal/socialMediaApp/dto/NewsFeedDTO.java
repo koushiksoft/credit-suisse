@@ -13,6 +13,6 @@ import java.util.Map;
 @NoArgsConstructor
 @Builder
 public class NewsFeedDTO {
-    private Map<String,String> metaData;
+    private Map<String, String> metaData;
     private List<Post> posts;
 }

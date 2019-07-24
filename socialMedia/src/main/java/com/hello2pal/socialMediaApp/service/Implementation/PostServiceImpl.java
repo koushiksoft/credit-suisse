@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 import static com.hello2pal.socialMediaApp.util.ModelMapperUtility.convertPostEntityToPost;
 import static com.hello2pal.socialMediaApp.util.ModelMapperUtility.convertPostToPostEntity;
 
+
 @Service
 public class PostServiceImpl implements PostService {
 
@@ -36,8 +37,8 @@ public class PostServiceImpl implements PostService {
     public List<Post> fetchAllPostsbyUsers(List<String> userIds, int limit, int offset) {
         Pageable sortedByDate =
                 PageRequest.of(offset, limit, Sort.by("createdDate"));
-        List<PostEntity> postEntityList= postRepository.findByUserIdIn(userIds,sortedByDate);
-        List<Post> posts = postEntityList.stream().map( entity -> convertPostEntityToPost(entity)).collect(Collectors.toList());
+        List<PostEntity> postEntityList = postRepository.findByUserIdIn(userIds, sortedByDate);
+        List<Post> posts = postEntityList.stream().map(entity -> convertPostEntityToPost(entity)).collect(Collectors.toList());
         return posts;
     }
 

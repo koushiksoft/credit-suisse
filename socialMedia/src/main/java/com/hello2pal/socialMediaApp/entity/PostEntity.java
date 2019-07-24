@@ -26,7 +26,7 @@ public class PostEntity implements Serializable {
     @Column(name = "USER_ID")
     private String userId;
 
-    @Column(name ="CREATED_DATE")
+    @Column(name = "CREATED_DATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
 

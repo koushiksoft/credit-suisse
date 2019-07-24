@@ -3,6 +3,7 @@ package com.hello2pal.socialMediaApp.controller;
 
 import com.hello2pal.socialMediaApp.dto.User;
 import com.hello2pal.socialMediaApp.service.UserService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,9 +17,9 @@ public class UserController {
 
     @Autowired
     UserService userService;
-
+    @ApiOperation(value = "Get user by User Id")
     @GetMapping("/user/{id}")
-    public ResponseEntity<User> fetchUser(@PathVariable("id") String userID){
+    public ResponseEntity<User> fetchUser(@PathVariable("id") String userID) {
         return ResponseEntity.ok().body(userService.fetchUserById(userID));
     }
 

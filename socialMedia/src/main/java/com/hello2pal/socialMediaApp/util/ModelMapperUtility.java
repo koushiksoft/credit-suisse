@@ -10,15 +10,15 @@ public class ModelMapperUtility {
 
     private static ModelMapper modelMapper = new ModelMapper();
 
-    public static User convertUserFromUserEntity(UserEntity userEntity){
-        return  modelMapper.map(userEntity, User.class);
+    public static User convertUserFromUserEntity(UserEntity userEntity) {
+        return modelMapper.map(userEntity, User.class);
     }
 
-    public static PostEntity convertPostToPostEntity(Post post){
-        return modelMapper.map(post , PostEntity.class);
+    public static PostEntity convertPostToPostEntity(Post post) {
+        return modelMapper.map(post, PostEntity.class);
     }
 
-    public static Post convertPostEntityToPost(PostEntity postEntity){
-        return modelMapper.map(postEntity , Post.class);
+    public static Post convertPostEntityToPost(PostEntity postEntity) {
+        return modelMapper.map(postEntity, Post.class);
     }
 }

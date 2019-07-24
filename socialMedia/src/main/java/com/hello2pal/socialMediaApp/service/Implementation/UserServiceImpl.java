@@ -28,11 +28,10 @@ public class UserServiceImpl implements UserService {
     }
 
 
-
-    private UserEntity validateUserId(String userID){
+    private UserEntity validateUserId(String userID) {
         Optional<UserEntity> userEntityOptional = userRepository.findById(userID);
         userEntityOptional.orElseThrow(() ->
-                new SocialAppException(ExceptionCodes.USER_ID_NOT_FOUND,"No user found with userid" + userID));
+                new SocialAppException(ExceptionCodes.USER_ID_NOT_FOUND, "No user found with userid" + userID));
         return userEntityOptional.get();
     }
 
@@ -46,15 +45,13 @@ public class UserServiceImpl implements UserService {
     }
 
 
-
-
     @Override
     public String follow(String followerId, String followeeId) {
         UserEntity follwerUserEntity = validateUserId(followerId);
         UserEntity followeeUserEntiry = validateUserId(followeeId);
 
-        if(follwerUserEntity.getFollowing() !=null && follwerUserEntity.getFollowing().contains(followeeUserEntiry)){
-            throw  new SocialAppException(ExceptionCodes.VALIDATION_FAILED,"Unable to Subscriber . ,User id " + followerId +" already follows " + followeeId);
+        if (follwerUserEntity.getFollowing() != null && follwerUserEntity.getFollowing().contains(followeeUserEntiry)) {
+            throw new SocialAppException(ExceptionCodes.VALIDATION_FAILED, "Unable to Subscriber . ,User id " + followerId + " already follows " + followeeId);
         }
 
         followeeUserEntiry.addFollower(follwerUserEntity);
@@ -67,8 +64,8 @@ public class UserServiceImpl implements UserService {
         UserEntity follwerUserEntity = validateUserId(followerId);
         UserEntity followeeUserEntiry = validateUserId(followeeId);
 
-        if(follwerUserEntity.getFollowing() !=null && !follwerUserEntity.getFollowing().contains(followeeUserEntiry)){
-            throw  new SocialAppException(ExceptionCodes.VALIDATION_FAILED,"Unable to unscubcribe ,User id " + followerId +" doesnot follow " + followeeId);
+        if (follwerUserEntity.getFollowing() != null && !follwerUserEntity.getFollowing().contains(followeeUserEntiry)) {
+            throw new SocialAppException(ExceptionCodes.VALIDATION_FAILED, "Unable to unscubcribe ,User id " + followerId + " doesnot follow " + followeeId);
         }
         followeeUserEntiry.removeFollower(follwerUserEntity);
         userRepository.save(followeeUserEntiry);
