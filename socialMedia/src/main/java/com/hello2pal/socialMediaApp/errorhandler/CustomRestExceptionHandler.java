@@ -17,16 +17,12 @@ import java.util.Map;
 @ControllerAdvice
 public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
 
-
-    // 500
-
     @ExceptionHandler({Exception.class})
     public ResponseEntity<Object> handleAll(final Exception ex, final WebRequest request) {
         logger.info(ex.getClass().getName());
         logger.error("error", ex);
         Map<String, String> metas = new HashMap<>();
         metas.put("UUID", (String) request.getAttribute("refId", 0));
-
         ErrorDetails error = new ErrorDetails(402, "Internal Server Error ");
         final ApiError apiError = ApiError.builder().metaData(metas).error(error).build();
         return new ResponseEntity<Object>(apiError, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -36,8 +32,6 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<Object> handleAll(final SocialAppException ex, final WebRequest request) {
         logger.info(ex.getClass().getName());
         logger.error("error", ex);
-        //
-
         ErrorDetails error = ErrorDetails.builder().code(ex.getErrorCode()).message(ex.getMessage()).build();
         Map<String, String> metas = new HashMap<>();
         metas.put("UUID", (String) request.getAttribute("refId", 0));
