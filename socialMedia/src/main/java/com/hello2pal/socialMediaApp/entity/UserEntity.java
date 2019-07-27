@@ -3,6 +3,7 @@ package com.hello2pal.socialMediaApp.entity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,6 +16,7 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode
+@ToString
 public class UserEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -48,7 +50,13 @@ public class UserEntity implements Serializable {
     }
 
     public void addFollower(UserEntity follower) {
+        if(followers == null){
+            followers = new HashSet<>();
+        }
         followers.add(follower);
+        if(follower.following == null){
+            follower.following = new HashSet<>();
+        }
         follower.following.add(this);
     }
 
