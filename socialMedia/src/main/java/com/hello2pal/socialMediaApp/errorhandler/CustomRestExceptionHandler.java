@@ -25,7 +25,7 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
         metas.put("UUID", (String) request.getAttribute("refId", 0));
         ErrorDetails error = new ErrorDetails(402, "Internal Server Error ");
         final ApiError apiError = ApiError.builder().metaData(metas).error(error).build();
-        return new ResponseEntity<Object>(apiError, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(apiError, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler({SocialAppException.class})
@@ -36,7 +36,7 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
         Map<String, String> metas = new HashMap<>();
         metas.put("UUID", (String) request.getAttribute("refId", 0));
         final ApiError apiError = ApiError.builder().metaData(metas).error(error).build();
-        return new ResponseEntity<Object>(apiError, new HttpHeaders(), HttpStatus.EXPECTATION_FAILED);
+        return new ResponseEntity<>(apiError, new HttpHeaders(), HttpStatus.EXPECTATION_FAILED);
     }
 
 }

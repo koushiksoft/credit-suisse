@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
         Optional<UserEntity> userEntityOptional = userRepository.findById(follwerdId);
         List<String> allFollwingIds =
                 userEntityOptional.get().getFollowing().stream()
-                        .map(entity -> entity.getUserId()).collect(Collectors.toList());
+                        .map(UserEntity::getUserId).collect(Collectors.toList());
         return allFollwingIds;
     }
 

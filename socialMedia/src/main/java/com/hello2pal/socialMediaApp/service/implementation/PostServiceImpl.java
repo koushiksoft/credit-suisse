@@ -4,6 +4,7 @@ import com.hello2pal.socialMediaApp.dto.Post;
 import com.hello2pal.socialMediaApp.entity.PostEntity;
 import com.hello2pal.socialMediaApp.repository.PostRepository;
 import com.hello2pal.socialMediaApp.service.PostService;
+import com.hello2pal.socialMediaApp.util.ModelMapperUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -38,7 +39,7 @@ public class PostServiceImpl implements PostService {
         Pageable sortedByDate =
                 PageRequest.of(offset, limit, Sort.by("createdDate"));
         List<PostEntity> postEntityList = postRepository.findByUserIdIn(userIds, sortedByDate);
-        List<Post> posts = postEntityList.stream().map(entity -> convertPostEntityToPost(entity)).collect(Collectors.toList());
+        List<Post> posts = postEntityList.stream().map(ModelMapperUtility::convertPostEntityToPost).collect(Collectors.toList());
         return posts;
     }
 
