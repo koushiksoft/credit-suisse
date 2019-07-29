@@ -23,7 +23,7 @@ public class UserRepositoryTest {
 
     @Test
     @DisplayName("Add Users to repo - success")
-    public void testCreateUser(){
+    public void testCreateUser() {
         UserEntity userEntity = new UserEntity();
         userEntity.setGender("MALE");
         userEntity.setUserId("U4001");
@@ -34,13 +34,13 @@ public class UserRepositoryTest {
 
         UserEntity found = userRepository.findById(userEntity.getUserId()).get();
 
-        assertEquals(found.getUsernName(),userEntity.getUsernName());
+        assertEquals(found.getUsernName(), userEntity.getUsernName());
 
     }
 
     @Test
     @DisplayName("Add Users with following - success")
-    public void testUserFollowing(){
+    public void testUserFollowing() {
         UserEntity following = new UserEntity();
         following.setGender("MALE");
         following.setUserId("U4002");
@@ -55,7 +55,7 @@ public class UserRepositoryTest {
         entityManager.persist(follower);
         entityManager.flush();
 
-        following =entityManager.find(UserEntity.class,following.getUserId());
+        following = entityManager.find(UserEntity.class, following.getUserId());
         following.addFollower(follower);
 
         entityManager.persist(following);
@@ -63,8 +63,8 @@ public class UserRepositoryTest {
 
         UserEntity found = userRepository.findById(follower.getUserId()).get();
 
-        assertEquals(found.getFollowing().size(),1);
-        assertEquals(found.getFollowing().contains(following),true);
+        assertEquals(found.getFollowing().size(), 1);
+        assertEquals(found.getFollowing().contains(following), true);
 
     }
 }

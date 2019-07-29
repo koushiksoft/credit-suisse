@@ -29,7 +29,7 @@ public class UserServiceTest {
 
     @Test
     @DisplayName("Test Fetch user - success")
-    public void testFetchUser(){
+    public void testFetchUser() {
         User user = User.builder().userId("U1001").userName("MIKE").gender("MALE").build();
         UserEntity userEntity = new UserEntity();
         userEntity.setUserId("U1001");
@@ -43,12 +43,11 @@ public class UserServiceTest {
         assertTrue(retUser.equals(user));
 
 
-
     }
 
     @Test
     @DisplayName("Fetch all following users list")
-    public void fetchAllUserFollowingLists(){
+    public void fetchAllUserFollowingLists() {
         UserEntity userEntity = new UserEntity();
         userEntity.setUserId("U1001");
 
@@ -58,7 +57,7 @@ public class UserServiceTest {
         UserEntity userEntity2 = new UserEntity();
         userEntity2.setUserId("U1003");
 
-        Set<UserEntity> usersVal = new HashSet<>(Arrays.asList(userEntity2,userEntity1));
+        Set<UserEntity> usersVal = new HashSet<>(Arrays.asList(userEntity2, userEntity1));
         userEntity.setFollowing(usersVal);
 
         doReturn(Optional.of(userEntity)).when(userRepository).findById(any());
@@ -70,7 +69,7 @@ public class UserServiceTest {
 
         assertTrue(users.contains("U1002"));
         assertTrue(users.contains("U1003"));
-        assertEquals(users.size(),2);
+        assertEquals(users.size(), 2);
 
     }
 }

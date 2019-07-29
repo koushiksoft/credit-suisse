@@ -15,7 +15,7 @@ public class ModelMapperUtilityTest {
 
     @Test
     @DisplayName("Test UserEntity to UserDto")
-    public void testUserEntityTOUserDtoConversion(){
+    public void testUserEntityTOUserDtoConversion() {
         User user = User.builder().userName("MARRY").gender("FEMALE").userId("U1001").build();
         UserEntity userEntity = new UserEntity();
         userEntity.setUsernName("MARRY");
@@ -23,12 +23,12 @@ public class ModelMapperUtilityTest {
         userEntity.setUserId("U1001");
 
         User converted = ModelMapperUtility.convertUserFromUserEntity(userEntity);
-        assertEquals(converted,user);
+        assertEquals(converted, user);
     }
 
     @Test
     @DisplayName("Test PostEntity to Post")
-    public void testPostEntityTOPostDtoConversion(){
+    public void testPostEntityTOPostDtoConversion() {
         Date currentDate = new Date();
         Post post = Post.builder().userId("U1001").content("HI").postId(1l).createdDate(currentDate).build();
         PostEntity postEntity = new PostEntity();
@@ -39,13 +39,13 @@ public class ModelMapperUtilityTest {
 
 
         Post converted = ModelMapperUtility.convertPostEntityToPost(postEntity);
-        assertEquals(converted,post);
+        assertEquals(converted, post);
     }
 
 
     @Test
     @DisplayName("Test Post to PostEntity")
-    public void testPostTOPostEntityConversion(){
+    public void testPostTOPostEntityConversion() {
         Date currentDate = new Date();
         Post post = Post.builder().userId("U1001").content("HI").postId(1l).createdDate(currentDate).build();
 
@@ -57,6 +57,6 @@ public class ModelMapperUtilityTest {
 
 
         PostEntity converted = ModelMapperUtility.convertPostToPostEntity(post);
-        assertEquals(postEntity,converted);
+        assertEquals(postEntity, converted);
     }
 }

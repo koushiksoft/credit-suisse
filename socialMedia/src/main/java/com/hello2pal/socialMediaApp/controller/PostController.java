@@ -18,6 +18,7 @@ public class PostController {
 
     @Autowired
     PostService postService;
+
     @ApiOperation(value = "create a post")
     @PostMapping("post")
     public ResponseEntity<Post> createPost(@RequestBody Post post) throws Exception {

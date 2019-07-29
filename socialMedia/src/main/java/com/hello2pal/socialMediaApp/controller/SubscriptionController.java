@@ -26,6 +26,7 @@ public class SubscriptionController {
         userService.follow(subscribeDTO.getFollowerID(), subscribeDTO.getFollowingID());
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
     @ApiOperation(value = "Unfollow -> Follower unfollows a followee")
     @DeleteMapping(path = "/subscriptions", consumes = "application/json", produces = "application/json")
     public ResponseEntity<String> unfollowUser(@RequestBody SubscriptionDTO subscribeDTO) {

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 @Api(value = "News Feed")
 @RestController
 @RequestMapping("/api/v1.0")
@@ -29,6 +30,7 @@ public class NewsFeedController {
 
     @Autowired
     NewsFeedConfigration newsFeedConfigration;
+
     @ApiOperation(value = "Get news feed by User Id")
     @GetMapping("/user/{userid}/newsfeed")
     public ResponseEntity<NewsFeedDTO> fetchNewsFeedDTO(

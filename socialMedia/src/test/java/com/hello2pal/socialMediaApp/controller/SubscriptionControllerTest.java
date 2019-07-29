@@ -16,7 +16,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
-
 import static com.hello2pal.socialMediaApp.util.ObjectMapperHelper.asJsonString;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.doThrow;
@@ -30,11 +29,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class SubscriptionControllerTest {
 
-    @MockBean
-    private UserService userService;
-
     @Autowired
     MockMvc mockMvc;
+    @MockBean
+    private UserService userService;
 
     @Test
     @DisplayName("Success in Follow user - success")
@@ -42,7 +40,7 @@ public class SubscriptionControllerTest {
         String followerId = "U1001";
         String following = "U1002";
         doReturn("SUCESS").when(userService)
-                .follow(followerId,following);
+                .follow(followerId, following);
         SubscriptionDTO subscriptionDTO = SubscriptionDTO.builder().followerID(followerId).followingID(following).build();
 
         mockMvc.perform(post("/api/v1.0/subscriptions")
@@ -56,7 +54,7 @@ public class SubscriptionControllerTest {
         String followerId = "U1001";
         String following = "U1002";
         doReturn("SUCESS").when(userService)
-                .unfollow(followerId,following);
+                .unfollow(followerId, following);
         SubscriptionDTO subscriptionDTO = SubscriptionDTO.builder().followerID(followerId).followingID(following).build();
 
         mockMvc.perform(delete("/api/v1.0/subscriptions")
@@ -66,86 +64,86 @@ public class SubscriptionControllerTest {
 
     @Test
     @DisplayName("Failure in unFollow User - Failure")
-    void testFailureUnsubcribe() throws Exception{
+    void testFailureUnsubcribe() throws Exception {
         String followerId = "U1001";
         String following = "U1002";
-        doThrow(new SocialAppException(ExceptionCodes.VALIDATION_FAILED,"Unable to UnSubscribe")).when(userService)
-                .unfollow(followerId,following);
+        doThrow(new SocialAppException(ExceptionCodes.VALIDATION_FAILED, "Unable to UnSubscribe")).when(userService)
+                .unfollow(followerId, following);
         SubscriptionDTO subscriptionDTO = SubscriptionDTO.builder().followerID(followerId).followingID(following).build();
 
 
         mockMvc.perform(delete("/api/v1.0/subscriptions")
                 .contentType(MediaType.APPLICATION_JSON).content(asJsonString(subscriptionDTO)))
-                .andExpect(jsonPath("$.error.code",Matchers.is(406)))
-                .andExpect(jsonPath("$.error.message",Matchers.is("Unable to UnSubscribe")));
+                .andExpect(jsonPath("$.error.code", Matchers.is(406)))
+                .andExpect(jsonPath("$.error.message", Matchers.is("Unable to UnSubscribe")));
 
     }
 
     @Test
     @DisplayName("Failure in follow User - Failure")
-    void testFailureSubcribe() throws Exception{
+    void testFailureSubcribe() throws Exception {
         String followerId = "U1001";
         String following = "U1002";
-        doThrow(new SocialAppException(ExceptionCodes.VALIDATION_FAILED,"Unable to Subscribe")).when(userService)
-                .follow(followerId,following);
+        doThrow(new SocialAppException(ExceptionCodes.VALIDATION_FAILED, "Unable to Subscribe")).when(userService)
+                .follow(followerId, following);
         SubscriptionDTO subscriptionDTO = SubscriptionDTO.builder().followerID(followerId).followingID(following).build();
 
 
         mockMvc.perform(post("/api/v1.0/subscriptions")
                 .contentType(MediaType.APPLICATION_JSON).content(asJsonString(subscriptionDTO)))
-                .andExpect(jsonPath("$.error.code",Matchers.is(406)))
-                .andExpect(jsonPath("$.error.message",Matchers.is("Unable to Subscribe")));
+                .andExpect(jsonPath("$.error.code", Matchers.is(406)))
+                .andExpect(jsonPath("$.error.message", Matchers.is("Unable to Subscribe")));
 
     }
 
     @Test
     @DisplayName("Null check for Follower and following - Failure")
-    void testNullCheckForSubscription() throws Exception{
+    void testNullCheckForSubscription() throws Exception {
         SubscriptionDTO subscriptionDTO = new SubscriptionDTO();
 
         mockMvc.perform(post("/api/v1.0/subscriptions")
                 .contentType(MediaType.APPLICATION_JSON).content(asJsonString(subscriptionDTO)))
-                .andExpect(jsonPath("$.error.code",Matchers.is(406)))
-                .andExpect(jsonPath("$.error.message",Matchers.is("Follwing Id and Follwer Id cannot be null")));
+                .andExpect(jsonPath("$.error.code", Matchers.is(406)))
+                .andExpect(jsonPath("$.error.message", Matchers.is("Follwing Id and Follwer Id cannot be null")));
 
     }
 
     @Test
     @DisplayName("Null check for Follower  - Failure")
-    void testNullCheckForFollower() throws Exception{
+    void testNullCheckForFollower() throws Exception {
         String following = "U1001";
         SubscriptionDTO subscriptionDTO = SubscriptionDTO.builder().followingID(following).followerID(null).build();
 
         mockMvc.perform(post("/api/v1.0/subscriptions")
                 .contentType(MediaType.APPLICATION_JSON).content(asJsonString(subscriptionDTO)))
-                .andExpect(jsonPath("$.error.code",Matchers.is(406)))
-                .andExpect(jsonPath("$.error.message",Matchers.is("Follwing Id and Follwer Id cannot be null")));
+                .andExpect(jsonPath("$.error.code", Matchers.is(406)))
+                .andExpect(jsonPath("$.error.message", Matchers.is("Follwing Id and Follwer Id cannot be null")));
 
     }
 
     @Test
     @DisplayName("Null check for Following  - Failure")
-    void testNullCheckForFolling() throws Exception{
+    void testNullCheckForFolling() throws Exception {
         String followerId = "U1001";
         SubscriptionDTO subscriptionDTO = SubscriptionDTO.builder().followingID(null).followerID(followerId).build();
 
         mockMvc.perform(post("/api/v1.0/subscriptions")
                 .contentType(MediaType.APPLICATION_JSON).content(asJsonString(subscriptionDTO)))
-                .andExpect(jsonPath("$.error.code",Matchers.is(406)))
-                .andExpect(jsonPath("$.error.message",Matchers.is("Follwing Id and Follwer Id cannot be null")));
+                .andExpect(jsonPath("$.error.code", Matchers.is(406)))
+                .andExpect(jsonPath("$.error.message", Matchers.is("Follwing Id and Follwer Id cannot be null")));
 
     }
 
     @Test
     @DisplayName("Restrict self follow - Failure")
-    void testSubscriptionFailureForSameUserFollowAndFollower() throws Exception{
+    void testSubscriptionFailureForSameUserFollowAndFollower() throws Exception {
         String followerId = "U1001";
         SubscriptionDTO subscriptionDTO = SubscriptionDTO.builder().followingID(followerId).followerID(followerId).build();
 
         mockMvc.perform(post("/api/v1.0/subscriptions")
                 .contentType(MediaType.APPLICATION_JSON).content(asJsonString(subscriptionDTO)))
-                .andExpect(jsonPath("$.error.code",Matchers.is(406)))
-                .andExpect(jsonPath("$.error.message",Matchers.is("Follwing Id and Follwer Id cannot be same")));
+                .andExpect(jsonPath("$.error.code", Matchers.is(406)))
+                .andExpect(jsonPath("$.error.message", Matchers.is("Follwing Id and Follwer Id cannot be same")));
 
     }
 

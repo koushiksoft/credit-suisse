@@ -29,7 +29,7 @@ public class PostRepositoryTest {
     private PostRepository postRepository;
 
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         PostEntity postEntity = new PostEntity();
         postEntity.setUserId("U4001");
         postEntity.setContent("Hi");
@@ -60,34 +60,34 @@ public class PostRepositoryTest {
 
     @Test
     @DisplayName("Test pagable of Post - success")
-    public void testPagablePost(){
-        Pageable pageable = PageRequest.of(0,2);
-        List<PostEntity> found = postRepository.findByUserIdIn(Arrays.asList("U4001","U3001"),pageable);
-        assertEquals(found.size(),2);
+    public void testPagablePost() {
+        Pageable pageable = PageRequest.of(0, 2);
+        List<PostEntity> found = postRepository.findByUserIdIn(Arrays.asList("U4001", "U3001"), pageable);
+        assertEquals(found.size(), 2);
 
     }
 
 
     @Test
     @DisplayName("Test count of Post - success")
-    public void testPostCount(){
-        long found = postRepository.countByUserIdIn(Arrays.asList("U4001","U3001"));
-        assertEquals(found,4l);
+    public void testPostCount() {
+        long found = postRepository.countByUserIdIn(Arrays.asList("U4001", "U3001"));
+        assertEquals(found, 4l);
 
     }
 
     @Test
     @DisplayName("Test Create Post - success")
-    public void testCreatePost(){
+    public void testCreatePost() {
         PostEntity postEntity = new PostEntity();
         postEntity.setUserId("U4001");
         postEntity.setContent("Hi");
         postEntity.setCreatedDate(new Date());
 
         PostEntity found = postRepository.save(postEntity);
-        PostEntity fromEntityManger =  entityManager.find(PostEntity.class,found.getPostId());
+        PostEntity fromEntityManger = entityManager.find(PostEntity.class, found.getPostId());
 
-        assertEquals(fromEntityManger,found);
+        assertEquals(fromEntityManger, found);
 
     }
 }

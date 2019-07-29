@@ -16,25 +16,23 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ExtendWith(SpringExtension.class)
 public class UserDtoJsonTest {
 
-    @Autowired
-    private JacksonTester<User> json;
-
     private static String USER_ID = "U1001";
     private static String USER_NAME = "MARRY";
     private static String GENDER = "FEMALE";
-    private User user;
-
     private static final String JSON_TO_DESERIALIZE =
             "{\"userId\":\""
                     + USER_ID
                     + "\",\"userName\":\""
                     + USER_NAME
                     + "\",\"gender\":"
-                    + "\""+GENDER  + "\""
+                    + "\"" + GENDER + "\""
                     + "}";
+    @Autowired
+    private JacksonTester<User> json;
+    private User user;
 
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         this.user = User.builder().userId(USER_ID).gender(GENDER).userName(USER_NAME).build();
     }
 

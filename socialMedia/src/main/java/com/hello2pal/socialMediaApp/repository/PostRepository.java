@@ -10,6 +10,7 @@ import java.util.List;
 
 public interface PostRepository extends CrudRepository<PostEntity, Long> {
     List<PostEntity> findByUserIdIn(List<String> userIds, Pageable sortbyCreationdate);
+
     @Query("select count(e) from PostEntity e where e.userId in (?1)")
     Long countByUserIdIn(List<String> userIds);
 }

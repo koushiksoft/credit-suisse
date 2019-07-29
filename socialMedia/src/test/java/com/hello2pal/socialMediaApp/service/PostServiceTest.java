@@ -32,7 +32,7 @@ public class PostServiceTest {
 
     @Test
     @DisplayName("Test post service - Get all posts ")
-    public void testPostService(){
+    public void testPostService() {
         Date d = new Date();
         Post post = Post.builder().createdDate(d).postId(1l).userId("U1001").content("hi1").build();
         Post post1 = Post.builder().createdDate(d).postId(2l).userId("U1001").content("hi2").build();
@@ -59,11 +59,11 @@ public class PostServiceTest {
         postEntity2.setPostId(3l);
 
 
-        doReturn(Arrays.asList(postEntity,postEntity1,postEntity2)).when(postRepository).findByUserIdIn(any(),any());
+        doReturn(Arrays.asList(postEntity, postEntity1, postEntity2)).when(postRepository).findByUserIdIn(any(), any());
 
-        List<Post> posts = postService.fetchAllPostsbyUsers(Arrays.asList("U1001"),2,0) ;
+        List<Post> posts = postService.fetchAllPostsbyUsers(Arrays.asList("U1001"), 2, 0);
 
-        assertEquals(posts.size(),3);
+        assertEquals(posts.size(), 3);
         assertTrue(posts.contains(post));
         assertTrue(posts.contains(post1));
         assertTrue(posts.contains(post2));
@@ -72,7 +72,7 @@ public class PostServiceTest {
 
     @Test
     @DisplayName("Create Post - success")
-    public void createPost(){
+    public void createPost() {
         Date d = new Date();
         Post post = Post.builder().createdDate(d).userId("U1001").content("hi1").build();
         Post returnExpectedpost = Post.builder().createdDate(d).postId(1l).userId("U1001").content("hi1").build();
@@ -87,7 +87,7 @@ public class PostServiceTest {
 
         Post returnVal = postService.createPost(post);
 
-        assertEquals(returnVal.equals(returnExpectedpost),true);
+        assertEquals(returnVal.equals(returnExpectedpost), true);
 
     }
 

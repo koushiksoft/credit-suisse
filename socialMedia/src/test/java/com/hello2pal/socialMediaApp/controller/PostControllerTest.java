@@ -2,7 +2,6 @@ package com.hello2pal.socialMediaApp.controller;
 
 import com.hello2pal.socialMediaApp.dto.Post;
 import com.hello2pal.socialMediaApp.service.PostService;
-
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,19 +19,18 @@ import java.util.Date;
 import static com.hello2pal.socialMediaApp.util.ObjectMapperHelper.asJsonString;
 import static org.mockito.Mockito.doReturn;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
 @AutoConfigureMockMvc
 public class PostControllerTest {
 
-    @MockBean
-    private PostService postService;
-
     @Autowired
     MockMvc mockMvc;
+    @MockBean
+    private PostService postService;
 
     @Test
     @DisplayName("Create Post - success")
@@ -45,7 +43,7 @@ public class PostControllerTest {
                 .contentType(MediaType.APPLICATION_JSON).content(asJsonString(postRequest)))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.postId", Matchers.is(1)))
-                .andExpect(jsonPath("$.userId",Matchers.is("U1001")));
+                .andExpect(jsonPath("$.userId", Matchers.is("U1001")));
         ;
     }
 }

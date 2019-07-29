@@ -50,11 +50,11 @@ public class UserEntity implements Serializable {
     }
 
     public void addFollower(UserEntity follower) {
-        if(followers == null){
+        if (followers == null) {
             followers = new HashSet<>();
         }
         followers.add(follower);
-        if(follower.following == null){
+        if (follower.following == null) {
             follower.following = new HashSet<>();
         }
         follower.following.add(this);
