@@ -35,29 +35,29 @@ public class PostServiceTest {
     @DisplayName("Test post service - Get all posts ")
     public void testPostService() {
         Date d = new Date();
-        Post post = Post.builder().createdDate(d).postId(1l).userId("U1001").content("hi1").build();
-        Post post1 = Post.builder().createdDate(d).postId(2l).userId("U1001").content("hi2").build();
-        Post post2 = Post.builder().createdDate(d).postId(3l).userId("U1001").content("hi3").build();
+        Post post = Post.builder().createdDate(d).postId(1L).userId("U1001").content("hi1").build();
+        Post post1 = Post.builder().createdDate(d).postId(2L).userId("U1001").content("hi2").build();
+        Post post2 = Post.builder().createdDate(d).postId(3L).userId("U1001").content("hi3").build();
 
 
         PostEntity postEntity = new PostEntity();
         postEntity.setUserId("U1001");
         postEntity.setContent("hi1");
         postEntity.setCreatedDate(d);
-        postEntity.setPostId(1l);
+        postEntity.setPostId(1L);
 
 
         PostEntity postEntity1 = new PostEntity();
         postEntity1.setUserId("U1001");
         postEntity1.setContent("hi2");
         postEntity1.setCreatedDate(d);
-        postEntity1.setPostId(2l);
+        postEntity1.setPostId(2L);
 
         PostEntity postEntity2 = new PostEntity();
         postEntity2.setUserId("U1001");
         postEntity2.setContent("hi3");
         postEntity2.setCreatedDate(d);
-        postEntity2.setPostId(3l);
+        postEntity2.setPostId(3L);
 
 
         doReturn(Arrays.asList(postEntity, postEntity1, postEntity2)).when(postRepository).findByUserIdIn(any(), any());
@@ -76,12 +76,12 @@ public class PostServiceTest {
     public void createPost() {
         Date d = new Date();
         Post post = Post.builder().createdDate(d).userId("U1001").content("hi1").build();
-        Post returnExpectedpost = Post.builder().createdDate(d).postId(1l).userId("U1001").content("hi1").build();
+        Post returnExpectedpost = Post.builder().createdDate(d).postId(1L).userId("U1001").content("hi1").build();
         PostEntity postEntity = new PostEntity();
         postEntity.setUserId("U1001");
         postEntity.setContent("hi1");
         postEntity.setCreatedDate(d);
-        postEntity.setPostId(1l);
+        postEntity.setPostId(1L);
 
 
         doReturn(postEntity).when(postRepository).save(any());

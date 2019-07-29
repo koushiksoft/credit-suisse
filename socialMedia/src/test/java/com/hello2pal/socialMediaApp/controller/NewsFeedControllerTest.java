@@ -46,7 +46,7 @@ public class NewsFeedControllerTest {
 
         doReturn("20").when(newsFeedConfigration).getDefaultLimit();
         doReturn("0").when(newsFeedConfigration).getDefaultOffset();
-        doReturn(30l).when(postService).fetchAllPostsbyUsersCount(any());
+        doReturn(30L).when(postService).fetchAllPostsbyUsersCount(any());
     }
 
     @Test
@@ -58,8 +58,8 @@ public class NewsFeedControllerTest {
         doReturn(followedusers).when(userService).fetchAllFollowingUseIds(followerId);
 
         Post postByFollower;
-        postByFollower = Post.builder().postId(1l).content("content1").userId(followerId).build();
-        Post postByFollingUser = Post.builder().postId(2l).content("content2").userId(following).build();
+        postByFollower = Post.builder().postId(1L).content("content1").userId(followerId).build();
+        Post postByFollingUser = Post.builder().postId(2L).content("content2").userId(following).build();
         doReturn(Arrays.asList(postByFollower, postByFollingUser)).when(postService)
                 .fetchAllPostsbyUsers(any(), anyInt(), anyInt());
 
@@ -78,8 +78,8 @@ public class NewsFeedControllerTest {
         List<String> followedusers = new ArrayList<>();
         doReturn(followedusers).when(userService).fetchAllFollowingUseIds(followerId);
 
-        Post postByFollower = Post.builder().postId(1l).content("content1").userId(followerId).build();
-        Post postByFollingUser = Post.builder().postId(2l).content("content2").userId(following).build();
+        Post postByFollower = Post.builder().postId(1L).content("content1").userId(followerId).build();
+        Post postByFollingUser = Post.builder().postId(2L).content("content2").userId(following).build();
         doReturn(Arrays.asList(postByFollower, postByFollingUser)).when(postService)
                 .fetchAllPostsbyUsers(any(), anyInt(), anyInt());
 
@@ -101,8 +101,8 @@ public class NewsFeedControllerTest {
         List<String> followedusers = new ArrayList<>();
         doReturn(followedusers).when(userService).fetchAllFollowingUseIds(followerId);
 
-        Post postByFollower = Post.builder().postId(1l).content("content1").userId(followerId).build();
-        Post postByFollingUser = Post.builder().postId(2l).content("content2").userId(following).build();
+        Post postByFollower = Post.builder().postId(1L).content("content1").userId(followerId).build();
+        Post postByFollingUser = Post.builder().postId(2L).content("content2").userId(following).build();
         doReturn(Arrays.asList(postByFollower, postByFollingUser)).when(postService)
                 .fetchAllPostsbyUsers(any(), anyInt(), anyInt());
 
@@ -123,8 +123,8 @@ public class NewsFeedControllerTest {
         List<String> followedusers = new ArrayList<>();
         doReturn(followedusers).when(userService).fetchAllFollowingUseIds(followerId);
 
-        Post postByFollower = Post.builder().postId(1l).content("content1").userId(followerId).build();
-        Post postByFollingUser = Post.builder().postId(2l).content("content2").userId(following).build();
+        Post postByFollower = Post.builder().postId(1L).content("content1").userId(followerId).build();
+        Post postByFollingUser = Post.builder().postId(2L).content("content2").userId(following).build();
         doReturn(Arrays.asList(postByFollower, postByFollingUser)).when(postService)
                 .fetchAllPostsbyUsers(any(), anyInt(), anyInt());
 

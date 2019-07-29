@@ -72,7 +72,7 @@ public class PostRepositoryTest {
     @DisplayName("Test count of Post - success")
     public void testPostCount() {
         long found = postRepository.countByUserIdIn(Arrays.asList("U4001", "U3001"));
-        assertEquals(found, 4l);
+        assertEquals(found, 4L);
 
     }
 

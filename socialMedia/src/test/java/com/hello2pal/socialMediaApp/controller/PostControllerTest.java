@@ -36,7 +36,7 @@ public class PostControllerTest {
     @DisplayName("Create Post - success")
     void testSucessfullPostCreation() throws Exception {
         Post postRequest = Post.builder().content("content").userId("U1001").build();
-        Post postResponse = Post.builder().postId(1l).content("content").userId("U1001").createdDate(new Date()).build();
+        Post postResponse = Post.builder().postId(1L).content("content").userId("U1001").createdDate(new Date()).build();
         doReturn(postResponse).when(postService).createPost(postRequest);
 
         mockMvc.perform(post("/api/v1.0/post")

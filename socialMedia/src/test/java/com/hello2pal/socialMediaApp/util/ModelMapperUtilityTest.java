@@ -30,10 +30,10 @@ public class ModelMapperUtilityTest {
     @DisplayName("Test PostEntity to Post")
     public void testPostEntityTOPostDtoConversion() {
         Date currentDate = new Date();
-        Post post = Post.builder().userId("U1001").content("HI").postId(1l).createdDate(currentDate).build();
+        Post post = Post.builder().userId("U1001").content("HI").postId(1L).createdDate(currentDate).build();
         PostEntity postEntity = new PostEntity();
         postEntity.setCreatedDate(currentDate);
-        postEntity.setPostId(1l);
+        postEntity.setPostId(1L);
         postEntity.setContent("HI");
         postEntity.setUserId("U1001");
 
@@ -47,11 +47,11 @@ public class ModelMapperUtilityTest {
     @DisplayName("Test Post to PostEntity")
     public void testPostTOPostEntityConversion() {
         Date currentDate = new Date();
-        Post post = Post.builder().userId("U1001").content("HI").postId(1l).createdDate(currentDate).build();
+        Post post = Post.builder().userId("U1001").content("HI").postId(1L).createdDate(currentDate).build();
 
         PostEntity postEntity = new PostEntity();
         postEntity.setCreatedDate(currentDate);
-        postEntity.setPostId(1l);
+        postEntity.setPostId(1L);
         postEntity.setContent("HI");
         postEntity.setUserId("U1001");
 
