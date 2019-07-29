@@ -38,10 +38,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<String> fetchAllFollowingUseIds(String follwerdId) {
         Optional<UserEntity> userEntityOptional = userRepository.findById(follwerdId);
-        List<String> allFollwingIds =
-                userEntityOptional.get().getFollowing().stream()
-                        .map(UserEntity::getUserId).collect(Collectors.toList());
-        return allFollwingIds;
+        return userEntityOptional.get().getFollowing().stream()
+                .map(UserEntity::getUserId).collect(Collectors.toList());
     }
 
 

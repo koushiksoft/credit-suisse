@@ -27,7 +27,7 @@ public class APIConfiguration {
 
     private ApiInfo metaInfo() {
 
-        ApiInfo apiInfo = new ApiInfo("A simple Social Media application(Maven Project).",
+        return new ApiInfo("A simple Social Media application(Maven Project).",
                 "A simple Social Media application(Maven Project)",
                 "v1.0",
                 "Terms of Services",
@@ -35,7 +35,5 @@ public class APIConfiguration {
                 "Apache Licence",
                 "url"
         );
-
-        return apiInfo;
     }
 }

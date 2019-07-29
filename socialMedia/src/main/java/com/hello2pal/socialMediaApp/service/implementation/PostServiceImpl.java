@@ -39,8 +39,7 @@ public class PostServiceImpl implements PostService {
         Pageable sortedByDate =
                 PageRequest.of(offset, limit, Sort.by("createdDate"));
         List<PostEntity> postEntityList = postRepository.findByUserIdIn(userIds, sortedByDate);
-        List<Post> posts = postEntityList.stream().map(ModelMapperUtility::convertPostEntityToPost).collect(Collectors.toList());
-        return posts;
+        return postEntityList.stream().map(ModelMapperUtility::convertPostEntityToPost).collect(Collectors.toList());
     }
 
     @Override

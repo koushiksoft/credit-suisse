@@ -44,6 +44,5 @@ public class PostControllerTest {
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.postId", Matchers.is(1)))
                 .andExpect(jsonPath("$.userId", Matchers.is("U1001")));
-        ;
     }
 }
