@@ -43,3 +43,58 @@
 2. Database access
 > http://localhost:8080/h2-console/   (user: sa and password: password)
 
+#### Links
+1. createPost
+> http://localhost:8080/api/v1.0/post [POST]
+
+Body:
+```
+{
+	"postId":"1111",
+	"userId":"U1003",
+	"content":"U1003 Spring Frame Work Description Three"
+}
+```
+Header:
+```
+Content-Type: application/json
+```
+
+2. getNewsFeed(userId)
+(limit & offset are 0ptional)
+> http://localhost:8080/api/v1.0/user/U1003/newsfeed?limit=20&offset=0 [GET]
+
+Header:
+```
+Content-Type: application/json
+```
+
+3. follow(followerId, followeeId)
+> http://localhost:8080/api/v1.0/subscriptions [POST]
+
+Body:
+```
+{
+	"followerID":"U1002",
+	"followingID":"U1005"
+}
+```
+Header:
+```
+Content-Type: application/json
+```
+
+4. unfollow(followerId, followeeId):
+> http://localhost:8080/api/v1.0/subscriptions [DELETE]
+
+Body:
+```
+{
+	"followerID":"U1002",
+	"followingID":"U1005"
+}
+```
+Header:
+```
+Content-Type: application/json
+```
