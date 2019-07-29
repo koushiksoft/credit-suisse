@@ -19,6 +19,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -53,7 +54,7 @@ public class NewsFeedControllerTest {
     void testFetchUserWithoutlimitandOffset() throws Exception {
         String followerId = "U1001";
         String following = "U1002";
-        List<String> followedusers = new ArrayList<>(Arrays.asList(following));
+        List<String> followedusers = new ArrayList<>(Collections.singletonList(following));
         doReturn(followedusers).when(userService).fetchAllFollowingUseIds(followerId);
 
         Post postByFollower;

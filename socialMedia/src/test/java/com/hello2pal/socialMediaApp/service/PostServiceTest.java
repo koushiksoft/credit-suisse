@@ -12,6 +12,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -61,7 +62,7 @@ public class PostServiceTest {
 
         doReturn(Arrays.asList(postEntity, postEntity1, postEntity2)).when(postRepository).findByUserIdIn(any(), any());
 
-        List<Post> posts = postService.fetchAllPostsbyUsers(Arrays.asList("U1001"), 2, 0);
+        List<Post> posts = postService.fetchAllPostsbyUsers(Collections.singletonList("U1001"), 2, 0);
 
         assertEquals(posts.size(), 3);
         assertTrue(posts.contains(post));
@@ -87,7 +88,7 @@ public class PostServiceTest {
 
         Post returnVal = postService.createPost(post);
 
-        assertEquals(returnVal.equals(returnExpectedpost), true);
+        assertEquals(returnVal, returnExpectedpost);
 
     }
 

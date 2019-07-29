@@ -40,7 +40,7 @@ public class UserServiceTest {
 
         User retUser = userService.fetchUserById("U1001");
 
-        assertTrue(retUser.equals(user));
+        assertEquals(retUser, user);
 
 
     }

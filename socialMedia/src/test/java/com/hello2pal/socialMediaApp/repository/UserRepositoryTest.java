@@ -10,6 +10,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
@@ -64,7 +65,7 @@ public class UserRepositoryTest {
         UserEntity found = userRepository.findById(follower.getUserId()).get();
 
         assertEquals(found.getFollowing().size(), 1);
-        assertEquals(found.getFollowing().contains(following), true);
+        assertTrue(found.getFollowing().contains(following));
 
     }
 }
