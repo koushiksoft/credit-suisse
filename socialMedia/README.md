@@ -26,16 +26,20 @@
 
 
 
-#### To achive this I have used below librares/ reposetories.
+#### To achieve this I have used below libraries/ repositories.
 
 - Swagger2 & Swagger UI : API documentations and Rest API call
 - slf4J : Log.
 - lombok : Boiler code.
-- h2database : For inmemory database.
-- mockito : For test cases
+- h2database : For in memory database.
+- Junit & mockito : For test cases
 
 
-## FEW REQUIRD URLS
+## CHECK MY TEST CASES
+
+> All test cases are available [here](https://github.com/koushiksoft/credit-suisse/tree/master/socialMedia/src/test/java/com/hello2pal/socialMediaApp).
+
+### FEW REQUIRED URLS
 
 1. API documentations and Rest API call
 > http://localhost:8080/swagger-ui.html
@@ -43,7 +47,8 @@
 2. Database access
 > http://localhost:8080/h2-console/   (user: sa and password: password)
 
-#### Links
+### FEATURES URLS
+
 1. createPost
 > http://localhost:8080/api/v1.0/post [POST]
 
@@ -61,7 +66,7 @@ Content-Type: application/json
 ```
 
 2. getNewsFeed(userId)
-(limit & offset are 0ptional)
+(limit & offset are optional)
 > http://localhost:8080/api/v1.0/user/U1003/newsfeed?limit=20&offset=0 [GET]
 
 Header:
